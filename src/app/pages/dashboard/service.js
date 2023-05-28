@@ -5,11 +5,12 @@ export const dashboardApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://abnormalsecurity-public.s3.amazonaws.com/fe_dashboard' }),
   endpoints: (builder) => ({
     getDashboardData: builder.query({
-      query: () => `adams_keeling/messages.json`,
+      query: (customerId) => `${customerId}/messages.json`,
       transformResponse: (response) => {
         const initial = {
           highSeverityThreads: 0,
           spamMessages: 0,
+          totalThreadsCount: response.length,
           domainsMap: {}
         }
 
@@ -44,7 +45,10 @@ export const dashboardApi = createApi({
         return transformedData
       }
     }),
+    getCustomerData: builder.query({
+      query: () => `customers.json`,
+    })
   }),
 })
 
-export const { useGetDashboardDataQuery } = dashboardApi
+export const { useLazyGetDashboardDataQuery, useGetCustomerDataQuery } = dashboardApi
