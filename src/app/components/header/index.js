@@ -78,4 +78,4 @@ const Header = () => (
   </Disclosure>
 )
 
-export default Header
+export default React.memo(Header)

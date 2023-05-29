@@ -1,3 +1,4 @@
+import { number, string } from 'prop-types'
 import React from 'react'
 
 const ThreatCard = ({ title, countColorClass, count }) => (
@@ -12,5 +13,11 @@ const ThreatCard = ({ title, countColorClass, count }) => (
         </p>
     </div >
 )
+
+ThreatCard.propTypes = {
+    title: string.isRequired,
+    countColorClass: string.isRequired,
+    count: number.isRequired,
+}
 
 export default ThreatCard

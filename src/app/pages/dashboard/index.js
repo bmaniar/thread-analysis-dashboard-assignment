@@ -8,22 +8,23 @@ import { useLazyGetDashboardDataQuery, useGetCustomerDataQuery } from './service
 
 
 const Dashboard = () => {
-  const [getDashboardData, dashboardResponse = {}] = useLazyGetDashboardDataQuery('', {
-    skip: true
-  })
+  const [getDashboardData, dashboardResponse = {}] = useLazyGetDashboardDataQuery()
   const { data: dashboardData = {}, isLoading, isFetching, isSuccess } = dashboardResponse
   const { data: customerData = [], isLoading: customerDataIsLoading } = useGetCustomerDataQuery()
   const { highSeverityThreads, spamMessages, domainsMap = {}, totalThreadsCount } = dashboardData
 
+  /* Handles customer dropdown on change */
   const handleCustomerOnChange = (newCustomer) => {
     getDashboardData(newCustomer)
   }
 
   useEffect(() => {
     if (customerData.length) {
+      /* Selecting 1st customer as a default customer */
       const firstCustomer = customerData[0]
       getDashboardData(firstCustomer.id)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customerData])
 
   return (

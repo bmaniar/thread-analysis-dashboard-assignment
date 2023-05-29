@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { arrayOf, shape } from 'prop-types'
 
 const CustomerDropdown = ({ data, customerOnChangeCallback }) => {
 
@@ -21,6 +22,10 @@ const CustomerDropdown = ({ data, customerOnChangeCallback }) => {
       </select>
     </div>
   )
+}
+
+CustomerDropdown.propTypes = {
+  data: arrayOf(shape({})).isRequired,
 }
 
 export default CustomerDropdown

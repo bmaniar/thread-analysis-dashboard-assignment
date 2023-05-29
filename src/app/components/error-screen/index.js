@@ -15,4 +15,4 @@ const ErrorScreen = () => (
     </div>
 )
 
-export default ErrorScreen
+export default React.memo(ErrorScreen)

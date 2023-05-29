@@ -1,3 +1,4 @@
+import { number, shape, string } from 'prop-types'
 import React from 'react'
 
 const Table = ({ title, data, rowsToRender, totalThreadsCount }) => {
@@ -37,6 +38,13 @@ const Table = ({ title, data, rowsToRender, totalThreadsCount }) => {
       </div>
     </div>
   )
+}
+
+Table.propTypes = {
+  title: string.isRequired,
+  data: shape({}).isRequired,
+  rowsToRender: number.isRequired,
+  totalThreadsCount: number.isRequired,
 }
 
 export default Table
